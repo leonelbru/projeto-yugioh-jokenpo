@@ -135,7 +135,7 @@ async function hiddenCardDetails() {
     }
 
 async function checkDuelResults(playerCardId, computerCardId) {
-    let duelResults = "IT'S A DRAW";
+    let duelResults = "DRAW";
     let playerCard = cardData[playerCardId];
 
     if(playerCard.WinOf.includes(computerCardId)){
@@ -189,8 +189,14 @@ async function resetDuel() {
 }
 
 async function playAudio(status) {
-    const audio = new Audio(`./src/assets/audios/${status}.wav`);
-        audio.play();
+    let fileName = "";
+
+    if (status === "WIN") fileName = "win";
+    else if (status === "LOSE") fileName = "lose";
+    else return; 
+
+    const audio = new Audio(`./src/assets/audios/${fileName}.wav`);
+    audio.play();
     
 }
     function init() {
